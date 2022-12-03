@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>replit</title>
+    <link href="style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+    <h1>小麦算を演算するテスト</h1>
+    種の数：<input type="number" id="num" value="5"><br>
+    実行する回数：<input type="number" id="time" value="3"><br>
+    <button onclick="grow()">実行</button>
+    <div id="result">
+        <h2>小麦は</h2><br>
+        <p></p>
+        <h2>まで増えました</h2>
+    </div>
+
+    <script>
+        const Keyv = require('keyv');
+        const storage = new Keyv('sqlite://storage.sqlite', { table: 'storage' });
+        storage.on('error', err => console.error('Keyv connection error:', err));
+        let seed = document.getElementById("num");
+        let time = document.getElementById("time");
+        function grow() {
+            for (let i = 0; i > time; i++) {
+                let growSeed = seed * 4;
+                growSeed = growSeed - seed
+                let store = store + seed
+                storage.set('storage', store)
+            };
+            const result = storage.get("storage");
+            document.getElementById("result").innerText = result;
+        };
+    </script>
+</body>
+
+</html>
